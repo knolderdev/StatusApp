@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer base {
+  .loader {
+    width: 100%;
+    z-index: 500;
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    img {
+      max-width: 200px;
+    }
+  }
+}

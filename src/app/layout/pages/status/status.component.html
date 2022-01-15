@@ -1,0 +1,81 @@
+<div class="px-4 max-w-5xl mx-auto">
+  <form (ngSubmit)="onSubmit()" [formGroup]="statusForm"
+        class="flex flex-col pt-6 max-w-800 mx-auto">
+    <div class="sm:flex">
+      <!-- Ticket Link -->
+      <mat-form-field appearance="outline" class="mb-2 sm:pr-4 w-full">
+        <mat-label class="input-text">Ticket Link</mat-label>
+        <input class="input-text" formControlName="ticket" matInput type="text">
+        <mat-error *ngIf="statusForm.controls['ticket'].hasError('required')">Ticket Link is required.</mat-error>
+      </mat-form-field>
+
+    </div>
+
+    <div class="sm:flex">
+      <!-- Ticket Link -->
+      <mat-form-field appearance="outline" class="mb-2 sm:pr-4 w-full">
+        <mat-label class="input-text">Ticket Title</mat-label>
+        <input class="input-text" formControlName="ticketTitle" matInput type="text">
+        <mat-error *ngIf="statusForm.controls['ticketTitle'].hasError('required')">Ticket Title is required.</mat-error>
+      </mat-form-field>
+
+    </div>
+    <div class="sm:flex mb-2">
+      <!-- Ticket Link -->
+      <!--      <mat-label>Project Type : &nbsp;&nbsp;</mat-label>-->
+      <mat-radio-group formControlName="studio">
+        <mat-label class="input-text">Studio : </mat-label>
+        <ng-container *ngFor="let studio of studios">
+          <mat-radio-button [value]="studio.value">{{studio.viewValue}}</mat-radio-button>&nbsp;&nbsp;
+        </ng-container>
+      </mat-radio-group>
+
+    </div>
+
+    <div class="sm:flex mb-2">
+      <!-- Ticket Link -->
+      <!--      <mat-label>Project Type : &nbsp;&nbsp;</mat-label>-->
+      <mat-radio-group formControlName="projectType">
+        <mat-label class="input-text">Project Type : </mat-label>
+        <ng-container *ngFor="let projectType of projectTypes">
+          <mat-radio-button [value]="projectType.value">{{projectType.viewValue}}</mat-radio-button>&nbsp;&nbsp;
+        </ng-container>
+      </mat-radio-group>
+
+    </div>
+
+    <div class="sm:flex mb-2 mt-2">
+      <!--Product Count-->
+      <mat-form-field appearance="outline" class="mb-2 sm:pr-4 w-full">
+        <mat-label class="input-text">Project</mat-label>
+        <mat-select formControlName="project">
+          <mat-option *ngFor="let project of projects" [value]="project">
+            {{project.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="sm:flex mb-2">
+      <mat-radio-group formControlName="projectStatus">
+        <mat-label class="input-text">Status : </mat-label>
+        <ng-container *ngFor="let status of projectStatusArray">
+          <mat-radio-button [value]="status.value">{{status.viewValue}}</mat-radio-button>&nbsp;
+        </ng-container>
+      </mat-radio-group>
+    </div>
+
+    <div class="text-center mt-2">
+      <button
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        type="submit">
+        Submit
+      </button>
+      <button
+        class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+        type="button" [disabled]="!generateAllowed" (click)="generateDailyStatus()">
+        Generate Status
+      </button>
+    </div>
+  </form>
+</div>
