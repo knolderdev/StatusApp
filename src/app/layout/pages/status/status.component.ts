@@ -32,8 +32,8 @@ export class StatusComponent implements OnInit {
     },
     {value: "MucinexFastMax]", viewValue: "MucinexFastMax"},
     {
-      value: 'Skinny-Serta President\'s Day - VISA - GWP Promotion]',
-      viewValue: 'Skinny-Serta President\'s Day - VISA - GWP Promotion'
+      value: 'Skinny-Serta BeautyRest President\'s Day Bundle GWP]',
+      viewValue: 'Skinny-Serta BeautyRest President\'s Day Bundle GWP'
     }
   ]
 
