@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {dropDown} from "../../../core/models/status.model";
 import {ToastrService} from "ngx-toastr";
@@ -14,6 +14,7 @@ export class StatusComponent implements OnInit {
   generateAllowed = false;
   Data!: string;
   DataArray: string[] = [];
+  ticketNumberArray: string[] = [];
   ticketNumber!: string;
   ticketTitle!: string;
   studio!: string;
@@ -25,7 +26,15 @@ export class StatusComponent implements OnInit {
       value: "Skinny-Serta President's Day - VISA - GWP Promotion]",
       viewValue: "Skinny-Serta President's Day - VISA - GWP Promotion"
     },
+    {
+      value: "Skinny-Serta Presidents Day Physical Classic Bundle GWP]",
+      viewValue: "Skinny-Serta Presidents Day Physical Classic Bundle GWP"
+    },
     {value: "MucinexFastMax]", viewValue: "MucinexFastMax"},
+    {
+      value: 'Skinny-Serta President\'s Day - VISA - GWP Promotion]',
+      viewValue: 'Skinny-Serta President\'s Day - VISA - GWP Promotion'
+    }
   ]
 
   projectTypes: dropDown[] = [
@@ -60,35 +69,64 @@ export class StatusComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (JSON.parse(<string>localStorage.getItem('status')) != null) {
-      this.DataArray = JSON.parse(<string>localStorage.getItem('status'));
-      this.generateAllowed = true;
-    }
+    this.setDataArray();
   }
 
   onSubmit() {
-    if(this.statusForm.invalid){
+    if (this.statusForm.invalid) {
       this.toastr.error('Missing form fields');
       return
     }
-    this.ticketNumber = '*' + this.statusForm.controls['ticket'].value.split('/')[4] + '*';
-    this.ticketTitle = this.statusForm.controls['ticketTitle'].value;
-    this.studio = this.statusForm.controls['studio'].value + '-';
-    this.projectType = '[' + this.statusForm.controls['projectType'].value + '-';
-    this.project = this.statusForm.controls['project'].value;
-    this.projectStatus = '*[' + this.statusForm.controls['projectStatus'].value + ']*';
-    this.Data = this.ticketNumber + ' ' + this.studio + this.projectType + this.project.value + ' ' + this.ticketTitle + ' ' + this.projectStatus;
-    if (this.DataArray.includes(this.Data)) {
-      this.toastr.error('We already have this item in our list');
+    const ticketNumber = this.statusForm.controls['ticket'].value.split('/')[4]
+    if (this.ticketNumberArray.includes(ticketNumber)) {
+      this.toastr.error('We have the same ticket with ticket number ' + ticketNumber + ' in the list.');
+      return
     } else {
+      this.ticketNumber = '*' + ticketNumber + '*';
+      this.ticketTitle = this.statusForm.controls['ticketTitle'].value;
+      this.studio = this.statusForm.controls['studio'].value + '-';
+      this.projectType = '[' + this.statusForm.controls['projectType'].value + '-';
+      this.project = this.statusForm.controls['project'].value;
+      this.projectStatus = '*[' + this.statusForm.controls['projectStatus'].value + ']*';
+      this.Data = this.ticketNumber + ' ' + this.studio + this.projectType + this.project.value + ' ' + this.ticketTitle + ' ' + this.projectStatus;
       this.DataArray.push(this.Data);
-      localStorage.setItem('status', JSON.stringify(this.DataArray));
+      this.setLocalStorage();
       this.toastr.success('An item is added to the list');
+      this.setDataArray();
     }
   }
 
-  generateDailyStatus(){
+  setLocalStorage() {
+    localStorage.setItem('status', JSON.stringify(this.DataArray));
+  }
+
+  generateDailyStatus() {
     this.router.navigate(['/home/dailyStatus'])
   }
 
+  setDataArray() {
+    if (JSON.parse(<string>localStorage.getItem('status')) != null) {
+      this.DataArray = JSON.parse(<string>localStorage.getItem('status'));
+    }
+    this.ticketNumberArray = [];
+    this.DataArray.forEach((item: string) => {
+      const ticketNumber = item.substr(1, 8);
+      this.ticketNumberArray.push(ticketNumber);
+    })
+  }
+
+  DeleteItem(ticketNumber: string) {
+    console.log('number', ticketNumber);
+    const tempArray = this.DataArray;
+    this.DataArray = [];
+    this.ticketNumberArray = [];
+    tempArray.forEach((item: string) => {
+      const number = item.substr(1, 8);
+      if (number != ticketNumber) {
+        this.DataArray.push(item);
+        this.ticketNumberArray.push(number);
+      }
+    });
+    this.setLocalStorage();
+  }
 }

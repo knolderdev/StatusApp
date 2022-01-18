@@ -1,14 +1,22 @@
 <section class="max-w-6xl p-6 mt-6 mb-6 bg-gray-300 mx-auto relative">
-  <button type="button" (click)="copyToClipBoard()" class="absolute right-5">
-    <mat-icon>file_copy</mat-icon>
-  </button>
+  <div class="absolute right-5">
+    <ng-container *ngIf="showLoader else showButton">
+      <mat-spinner mode="indeterminate" [diameter]="20"></mat-spinner>
+    </ng-container>
+    <ng-template #showButton>
+      <button type="button" (click)="copyToClipBoard()">
+        <ng-container *ngIf="showCheckIcon else copyIcon">
+          <mat-icon class="text-lime-600">check</mat-icon>
+        </ng-container>
+        <ng-template #copyIcon>
+          <mat-icon>file_copy</mat-icon>
+        </ng-template>
+      </button>
+    </ng-template>
+  </div>
   <div #status>
     {{date}}
-    <span>
-    <br>
     <div class="flex">==========================================================</div>
-    <br>
-  </span>
     <ng-container *ngFor="let items of dataArray; let i=index;">
       {{i+1}}. {{items}} <br>
     </ng-container>

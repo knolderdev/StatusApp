@@ -11,6 +11,8 @@ export class DataViewComponent implements OnInit, AfterViewInit {
   date!: string;
   dataArray: string[] = [];
   dailyStatus!: string;
+  showCheckIcon = false;
+  showLoader = false;
   @ViewChild('status') template!: ElementRef;
 
   constructor(private clipBoard: ClipboardService,
@@ -25,8 +27,13 @@ export class DataViewComponent implements OnInit, AfterViewInit {
   }
 
   copyToClipBoard(){
+    this.showLoader = true;
     this.clipBoard.copy(this.dailyStatus);
-    this.toastr.success('Copied to Clipboard');
+    setTimeout(() =>{
+      this.showCheckIcon = true;
+      this.showLoader = false;
+      this.toastr.success('Copied to Clipboard');
+    },500)
   }
 
   ngAfterViewInit() {
