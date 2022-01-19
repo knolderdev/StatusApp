@@ -33,6 +33,8 @@ export class StatusComponent implements OnInit {
     project: ['', Validators.required],
     projectStatus: ['', Validators.required],
   });
+  itemOne = 'Paired up with team members on various issues.';
+  itemTwo = "Reviewed multiple PR's"
 
   constructor(private formBuilder: FormBuilder,
               private toastr: ToastrService,
@@ -72,7 +74,11 @@ export class StatusComponent implements OnInit {
   }
 
   generateDailyStatus() {
-    console.log('this.DataArray.length', this.DataArray.length);
+    if (!this.DataArray.includes(this.itemTwo) || !this.DataArray.includes(this.itemTwo)) {
+      this.DataArray.push(this.itemOne);
+      this.DataArray.push(this.itemTwo);
+      this.setLocalStorage();
+    }
     if (this.DataArray.length != 0) {
       this.router.navigate(['/home/dailyStatus']);
     } else {
@@ -80,19 +86,25 @@ export class StatusComponent implements OnInit {
     }
   }
 
+
   setDataArray() {
     if (JSON.parse(<string>localStorage.getItem('status')) != null) {
       this.DataArray = JSON.parse(<string>localStorage.getItem('status'));
     }
     this.ticketNumberArray = [];
     this.DataArray.forEach((item: string) => {
-      const ticketNumber = item.substr(1, 8);
-      this.ticketNumberArray.push(ticketNumber);
-    })
+      console.log('item is', item);
+      if (item != this.itemOne && item != this.itemTwo) {
+        const ticketNumber = item.substr(1, 8);
+        console.log(ticketNumber, 'ticket number');
+        this.ticketNumberArray.push(ticketNumber);
+      }
+    });
+    console.log(this.ticketNumberArray.length, 'length is');
+    console.log(this.ticketNumberArray, 'array');
   }
 
   DeleteItem(ticketNumber: string) {
-    console.log('number', ticketNumber);
     const tempArray = this.DataArray;
     this.DataArray = [];
     this.ticketNumberArray = [];
@@ -104,5 +116,10 @@ export class StatusComponent implements OnInit {
       }
     });
     this.setLocalStorage();
+    this.toastr.success('Item with ticket number ' + ticketNumber + ' is Deleted successfully.');
+  }
+
+  editItem() {
+    this.toastr.warning('We are working on this functionality. Please check back later');
   }
 }
