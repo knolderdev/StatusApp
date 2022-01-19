@@ -74,12 +74,12 @@ export class StatusComponent implements OnInit {
   }
 
   generateDailyStatus() {
-    if (!this.DataArray.includes(this.itemTwo) || !this.DataArray.includes(this.itemTwo)) {
-      this.DataArray.push(this.itemOne);
-      this.DataArray.push(this.itemTwo);
-      this.setLocalStorage();
-    }
     if (this.DataArray.length != 0) {
+      if (!this.DataArray.includes(this.itemTwo) || !this.DataArray.includes(this.itemTwo)) {
+        this.DataArray.push(this.itemOne);
+        this.DataArray.push(this.itemTwo);
+        this.setLocalStorage();
+      }
       this.router.navigate(['/home/dailyStatus']);
     } else {
       this.toastr.error('There are no items in the list to generate status');
@@ -109,10 +109,12 @@ export class StatusComponent implements OnInit {
     this.DataArray = [];
     this.ticketNumberArray = [];
     tempArray.forEach((item: string) => {
-      const number = item.substr(1, 8);
-      if (number != ticketNumber) {
-        this.DataArray.push(item);
-        this.ticketNumberArray.push(number);
+      if (item != this.itemOne && item != this.itemTwo) {
+        const number = item.substr(1, 8);
+        if (number != ticketNumber) {
+          this.DataArray.push(item);
+          this.ticketNumberArray.push(number);
+        }
       }
     });
     this.setLocalStorage();
