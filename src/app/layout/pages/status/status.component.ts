@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {dropDown} from "../../../core/models/status.model";
 import {ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
+import {AppConstants} from "../../../core/constants/app-constants";
 
 @Component({
   selector: 'app-status',
@@ -11,7 +12,6 @@ import {Router} from "@angular/router";
 })
 
 export class StatusComponent implements OnInit {
-  generateAllowed = false;
   Data!: string;
   DataArray: string[] = [];
   ticketNumberArray: string[] = [];
@@ -21,39 +21,10 @@ export class StatusComponent implements OnInit {
   projectType!: string;
   project!: dropDown;
   projectStatus!: string;
-  projects: dropDown[] = [
-    {
-      value: "Skinny-Serta President's Day - VISA - GWP Promotion]",
-      viewValue: "Skinny-Serta President's Day - VISA - GWP Promotion"
-    },
-    {
-      value: "Skinny-Serta Presidents Day Physical Classic Bundle GWP]",
-      viewValue: "Skinny-Serta Presidents Day Physical Classic Bundle GWP"
-    },
-    {value: "MucinexFastMax]", viewValue: "MucinexFastMax"},
-    {
-      value: 'Skinny-Serta BeautyRest President\'s Day Bundle GWP]',
-      viewValue: 'Skinny-Serta BeautyRest President\'s Day Bundle GWP'
-    }
-  ]
-
-  projectTypes: dropDown[] = [
-    {value: "MICROSITE", viewValue: "Microsite"},
-    {value: "PORTAL", viewValue: "Portal"},
-  ]
-
-  projectStatusArray: dropDown[] = [
-    {value: "IN PROGRESS", viewValue: "Progress"},
-    {value: "READY FOR REVIEW", viewValue: "Review"},
-    {value: "READY FOR TESTING", viewValue: "Testing"},
-    {value: "DEPLOYED", viewValue: "Deployed"},
-    {value: "DONE", viewValue: "Done"},
-  ]
-
-  studios: dropDown[] = [
-    {value: 'FE', viewValue: 'Frontend'},
-    {value: 'BE', viewValue: 'Backend'},
-  ]
+  projects = AppConstants.projects;
+  projectTypes = AppConstants.projectTypes;
+  projectStatusArray = AppConstants.projectStatusArray;
+  studios = AppConstants.studios;
   statusForm: FormGroup = this.formBuilder.group({
     ticket: ['', Validators.required],
     ticketTitle: ['', Validators.required],
@@ -101,7 +72,12 @@ export class StatusComponent implements OnInit {
   }
 
   generateDailyStatus() {
-    this.router.navigate(['/home/dailyStatus'])
+    console.log('this.DataArray.length', this.DataArray.length);
+    if (this.DataArray.length != 0) {
+      this.router.navigate(['/home/dailyStatus']);
+    } else {
+      this.toastr.error('There are no items in the list to generate status');
+    }
   }
 
   setDataArray() {
