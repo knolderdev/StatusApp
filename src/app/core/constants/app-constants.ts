@@ -24,7 +24,15 @@ export class AppConstants {
     {
       value: 'Skinny-Serta BeautyRest President\'s Day Bundle GWP]',
       viewValue: 'Skinny-Serta BeautyRest President\'s Day Bundle GWP'
-    }
+    },
+    {
+      value: 'Cossette]',
+      viewValue: 'Cossette'
+    },
+    {
+      value: 'Universal]',
+      viewValue: 'Universal'
+    },
   ]
 
   public static readonly projectTypes: dropDown[] = [
@@ -43,5 +51,7 @@ export class AppConstants {
   public static readonly studios: dropDown[] = [
     {value: 'FE', viewValue: 'Frontend'},
     {value: 'BE', viewValue: 'Backend'},
+    {value: 'QA', viewValue: 'Frontend'},
+    {value: 'DevOps', viewValue: 'DevOps'},
   ]
 }
