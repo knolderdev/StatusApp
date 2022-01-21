@@ -44,6 +44,7 @@ export class AppConstants {
     {value: "IN PROGRESS", viewValue: "Progress"},
     {value: "READY FOR REVIEW", viewValue: "Review"},
     {value: "READY FOR TESTING", viewValue: "Testing"},
+    {value: "READY FOR RELEASE", viewValue: "Release"},
     {value: "DEPLOYED", viewValue: "Deployed"},
     {value: "DONE", viewValue: "Done"},
   ]
