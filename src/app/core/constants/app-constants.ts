@@ -51,7 +51,7 @@ export class AppConstants {
   public static readonly studios: dropDown[] = [
     {value: 'FE', viewValue: 'Frontend'},
     {value: 'BE', viewValue: 'Backend'},
-    {value: 'QA', viewValue: 'Frontend'},
+    {value: 'QA', viewValue: 'QA'},
     {value: 'DevOps', viewValue: 'DevOps'},
   ]
 }
