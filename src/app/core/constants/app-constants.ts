@@ -33,11 +33,21 @@ export class AppConstants {
       value: 'Universal]',
       viewValue: 'Universal'
     },
+    {
+      value: 'Leap Vapor]',
+      viewValue: 'Leap Vapor'
+    },
+    {
+      value: 'Toro]',
+      viewValue: 'Toro'
+    },
   ]
 
   public static readonly projectTypes: dropDown[] = [
     {value: "MICROSITE", viewValue: "Microsite"},
     {value: "PORTAL", viewValue: "Portal"},
+    {value: "TECH-DEBT", viewValue: "Tech-Debt"},
+    {value: "FANDANGO", viewValue: "Fandango"},
   ]
 
   public static readonly projectStatusArray: dropDown[] = [
