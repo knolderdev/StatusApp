@@ -24,6 +24,21 @@
         </mat-form-field>
 
       </div>
+
+      <div class="sm:flex">
+        <!-- Ticket Link -->
+        <mat-form-field appearance="outline" class="mb-2 sm:pr-4 w-full">
+          <mat-label class="input-text">Work Description</mat-label>
+          <textarea #workDesc
+                    matInput
+                    formControlName='workDesc'
+                    cdkTextareaAutosize
+                    cdkAutosizeMinRows="3"
+                    cdkAutosizeMaxRows="5"></textarea>
+        </mat-form-field>
+
+      </div>
+
       <div class="sm:flex mb-2">
         <!-- Ticket Link -->
         <!--      <mat-label>Project Type : &nbsp;&nbsp;</mat-label>-->
@@ -32,8 +47,9 @@
           <ng-container *ngFor="let studio of studios">
             <mat-radio-button [value]="studio.value">{{studio.viewValue}}</mat-radio-button>&nbsp;&nbsp;
           </ng-container>
+          <mat-error *ngIf="statusForm.controls['studio'].hasError('required') && displayError">Studio is required.
+          </mat-error>
         </mat-radio-group>
-
       </div>
 
       <div class="sm:flex mb-2">
@@ -44,8 +60,12 @@
           <ng-container *ngFor="let projectType of projectTypes">
             <mat-radio-button [value]="projectType.value">{{projectType.viewValue}}</mat-radio-button>&nbsp;&nbsp;
           </ng-container>
-        </mat-radio-group>
+          <mat-error *ngIf="statusForm.controls['projectType'].hasError('required') && displayError">Project type is
+            required.
+          </mat-error>
 
+        </mat-radio-group>
+        <br>
       </div>
 
       <div class="sm:flex mb-2 mt-2">
@@ -57,6 +77,8 @@
               {{project.viewValue}}
             </mat-option>
           </mat-select>
+          <mat-error *ngIf="statusForm.controls['project'].hasError('required')">Please select a project.
+          </mat-error>
         </mat-form-field>
       </div>
 
@@ -66,6 +88,10 @@
           <ng-container *ngFor="let status of projectStatusArray">
             <mat-radio-button [value]="status.value">{{status.viewValue}}</mat-radio-button>&nbsp;
           </ng-container>
+          <mat-error
+            *ngIf="statusForm.controls['projectStatus'].hasError('required') && displayError">
+            Project Status is required.
+          </mat-error>
         </mat-radio-group>
       </div>
 
@@ -109,7 +135,7 @@
         </thead>
         <tbody>
         <ng-container *ngFor="let ticketNumber of ticketNumberArray; let i=index;">
-          <tr class="bg-white border-b">
+          <tr class="bg-zinc-200 border-b">
             <td class="py-1 text-sm font-medium text-gray-900">{{i + 1}}</td>
             <td class="text-sm text-gray-900 font-light py-1">
               {{ticketNumber}}
@@ -130,8 +156,14 @@
             </td>
           </tr>
         </ng-container>
-        </tbody>
       </table>
+      <div class="text-sm font-medium text-white px-2 py-2 w-full bg-gray-500 text-center">
+        <button type="button"
+                (click)="deleteAll()"
+                class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out">
+          Delete All
+        </button>
+      </div>
     </div>
   </ng-container>
 

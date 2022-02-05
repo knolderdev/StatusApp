@@ -18,7 +18,7 @@
     {{date}}
     <div class="flex">==========================================================</div>
     <ng-container *ngFor="let items of dataArray; let i=index;">
-      {{i+1}}. {{items}} <br>
+      <div [innerHTML]="i+1 + '.' + items"></div>
     </ng-container>
   </div>
 </section>

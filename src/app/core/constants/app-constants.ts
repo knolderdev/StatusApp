@@ -65,4 +65,10 @@ export class AppConstants {
     {value: 'QA', viewValue: 'QA'},
     {value: 'DevOps', viewValue: 'DevOps'},
   ]
+
+  /**
+   * Data View component constants
+   */
+  public static readonly itemOne = 'Paired up with team members on various issues.';
+  public static readonly itemTwo = "Reviewed multiple PR's"
 }
