@@ -61,11 +61,6 @@ export class StatusComponent implements OnInit {
       this.toast.error('Missing form fields');
       return;
     }
-
-    if (this.statusForm.controls['ticket'].value.split('/').length != 4) {
-      this.toast.error('Invalid link. Please try again.');
-      return;
-    }
     const ticketNumber = this.statusForm.controls['ticket'].value.split('/')[4]
     if (this.ticketNumberArray.includes(ticketNumber)) {
       this.toast.error('We have the same ticket with ticket number ' + ticketNumber + ' in the list.');
