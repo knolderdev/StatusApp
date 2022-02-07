@@ -73,10 +73,10 @@ export class StatusComponent implements OnInit {
       this.projectType = '[' + this.statusForm.controls['projectType'].value + '-';
       this.project = this.statusForm.controls['project'].value;
       this.projectStatus = '*[' + this.statusForm.controls['projectStatus'].value + ']*';
-      const descArray = this.workDesc.split('\n');
       this.Data = this.ticketNumber + ' ' + this.studio + this.projectType + this.project.value + ']' + ' ' + this.ticketTitle + ' ' + this.projectStatus
       ;
-      if (descArray.length != 0) {
+      if (this.workDesc != '') {
+        const descArray = this.workDesc.split('\n');
         descArray.forEach((desc) => {
           this.Data = this.Data + '<br>&nbsp;&nbsp;&nbsp;&nbsp;' + '- ' + desc
         });
@@ -132,9 +132,6 @@ export class StatusComponent implements OnInit {
   }
 
   radioValueChange(e: any) {
-    console.log('e===========>', e);
-    console.log('e.source.value.value===========>', e.source.value.value);
-    console.log('e===========>', e);
     if (e.source.value.value === 'Other') {
       this.addInputFieldProject = true
       this.addItem('ProjectNameInput')
@@ -143,8 +140,6 @@ export class StatusComponent implements OnInit {
       this.addInputFieldType = true;
       this.addItem('ProjectTypeInput')
     }
-
-    console.log('New status form arrya is', this.statusForm)
   }
 
   deleteAll() {
