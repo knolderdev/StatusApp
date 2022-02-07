@@ -52,34 +52,49 @@
         </mat-radio-group>
       </div>
 
-      <div class="sm:flex mb-2">
+      <div class="mb-2">
         <!-- Ticket Link -->
         <!--      <mat-label>Project Type : &nbsp;&nbsp;</mat-label>-->
         <mat-radio-group formControlName="projectType">
           <mat-label class="input-text">Project Type :</mat-label>
           <ng-container *ngFor="let projectType of projectTypes">
-            <mat-radio-button [value]="projectType.value">{{projectType.viewValue}}</mat-radio-button>&nbsp;&nbsp;
+            <mat-radio-button [value]="projectType.value"
+                              (change)="radioValueChange($event)">{{projectType.viewValue}}</mat-radio-button>&nbsp;&nbsp;
           </ng-container>
           <mat-error *ngIf="statusForm.controls['projectType'].hasError('required') && displayError">Project type is
             required.
           </mat-error>
 
         </mat-radio-group>
+
+        <ng-container *ngIf="addInputFieldType">
+          <mat-form-field appearance="outline" class="mb-2 sm:pr-4 w-full">
+            <input class="input-text" formControlName="ProjectTypeInput" matInput type="text">
+            <mat-error *ngIf="statusForm.controls['project'].hasError('required')">Project Type is required</mat-error>
+          </mat-form-field>
+        </ng-container>
         <br>
       </div>
 
-      <div class="sm:flex mb-2 mt-2">
+      <div class="mb-2 mt-2">
         <!--Product Count-->
         <mat-form-field appearance="outline" class="mb-2 sm:pr-4 w-full">
           <mat-label class="input-text">Project</mat-label>
           <mat-select formControlName="project">
-            <mat-option *ngFor="let project of projects" [value]="project">
+            <mat-option *ngFor="let project of projects" [value]="project"
+                        (onSelectionChange)="radioValueChange($event)">
               {{project.viewValue}}
             </mat-option>
           </mat-select>
           <mat-error *ngIf="statusForm.controls['project'].hasError('required')">Please select a project.
           </mat-error>
         </mat-form-field>
+        <ng-container *ngIf="addInputFieldProject">
+          <mat-form-field appearance="outline" class="mb-2 sm:pr-4 w-full">
+            <input class="input-text" formControlName="ProjectNameInput" matInput type="text">
+            <mat-error *ngIf="statusForm.controls['project'].hasError('required')">Project name is required</mat-error>
+          </mat-form-field>
+        </ng-container>
       </div>
 
       <div class="sm:flex mb-2">

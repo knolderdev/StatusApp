@@ -13,34 +13,38 @@ export class AppConstants {
    */
   public static readonly projects: dropDown[] = [
     {
-      value: "Skinny-Serta President's Day - VISA - GWP Promotion]",
+      value: "Skinny-Serta President's Day - VISA - GWP Promotion",
       viewValue: "Skinny-Serta President's Day - VISA - GWP Promotion"
     },
     {
-      value: "Skinny-Serta Presidents Day Physical Classic Bundle GWP]",
+      value: "Skinny-Serta Presidents Day Physical Classic Bundle GWP",
       viewValue: "Skinny-Serta Presidents Day Physical Classic Bundle GWP"
     },
-    {value: "MucinexFastMax]", viewValue: "MucinexFastMax"},
+    {value: "MucinexFastMax", viewValue: "MucinexFastMax"},
     {
-      value: 'Skinny-Serta BeautyRest President\'s Day Bundle GWP]',
+      value: 'Skinny-Serta BeautyRest President\'s Day Bundle GWP',
       viewValue: 'Skinny-Serta BeautyRest President\'s Day Bundle GWP'
     },
     {
-      value: 'Cossette]',
+      value: 'Cossette',
       viewValue: 'Cossette'
     },
     {
-      value: 'Universal]',
+      value: 'Universal',
       viewValue: 'Universal'
     },
     {
-      value: 'Leap Vapor]',
+      value: 'Leap Vapor',
       viewValue: 'Leap Vapor'
     },
     {
-      value: 'Toro]',
+      value: 'Toro',
       viewValue: 'Toro'
     },
+    {
+      value: 'Other',
+      viewValue: 'Other'
+    }
   ]
 
   public static readonly projectTypes: dropDown[] = [
@@ -48,6 +52,7 @@ export class AppConstants {
     {value: "PORTAL", viewValue: "Portal"},
     {value: "TECH-DEBT", viewValue: "Tech-Debt"},
     {value: "FANDANGO", viewValue: "Fandango"},
+    {value: "Other", viewValue: "Other"},
   ]
 
   public static readonly projectStatusArray: dropDown[] = [
