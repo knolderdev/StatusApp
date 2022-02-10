@@ -42,6 +42,10 @@ export class AppConstants {
       viewValue: 'Toro'
     },
     {
+      value: 'Tena',
+      viewValue: 'Tena'
+    },
+    {
       value: 'Other',
       viewValue: 'Other'
     }

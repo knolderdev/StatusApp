@@ -89,12 +89,12 @@
           <mat-error *ngIf="statusForm.controls['project'].hasError('required')">Please select a project.
           </mat-error>
         </mat-form-field>
-        <ng-container *ngIf="addInputFieldProject">
-          <mat-form-field appearance="outline" class="mb-2 sm:pr-4 w-full">
-            <input class="input-text" formControlName="ProjectNameInput" matInput type="text">
-            <mat-error *ngIf="statusForm.controls['project'].hasError('required')">Project name is required</mat-error>
-          </mat-form-field>
-        </ng-container>
+        <!--        <ng-container *ngIf="addInputFieldProject">-->
+        <!--          <mat-form-field appearance="outline" class="mb-2 sm:pr-4 w-full">-->
+        <!--            <input class="input-text" formControlName="ProjectNameInput" matInput type="text">-->
+        <!--            <mat-error *ngIf="statusForm.controls['project'].hasError('required')">Project name is required</mat-error>-->
+        <!--          </mat-form-field>-->
+        <!--        </ng-container>-->
       </div>
 
       <div class="sm:flex mb-2">

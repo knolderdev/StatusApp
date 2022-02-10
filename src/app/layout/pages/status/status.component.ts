@@ -46,9 +46,9 @@ export class StatusComponent implements OnInit {
       ticket: ['', Validators.required],
       ticketTitle: ['', Validators.required],
       workDesc: [''],
-      studio: ['', Validators.required],
-      projectType: ['', Validators.required],
-      project: ['', Validators.required],
+      studio: [''],
+      projectType: [''],
+      project: [''],
       projectStatus: ['', Validators.required],
       items: this.formBuilder.array([])
     });
