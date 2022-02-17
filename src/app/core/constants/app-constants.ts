@@ -46,6 +46,10 @@ export class AppConstants {
       viewValue: 'Tena'
     },
     {
+      value: 'Henkel Spend $20 Get $5',
+      viewValue: 'Henkel Spend $20 Get $5'
+    },
+    {
       value: 'Other',
       viewValue: 'Other'
     }
